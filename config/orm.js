@@ -43,6 +43,16 @@ var orm = {
       cb(result);
     });
   },
+  where: function(tableInput, cb) {
+    var queryString = "SELECT * FROM " + tableInput + "where devoured = 1 ;";
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      console.log(result);
+      cb(result);
+    });
+  },
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
