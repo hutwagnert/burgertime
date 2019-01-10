@@ -6,6 +6,7 @@
       <br>
       <div class="text-center container">
          <h1>Burgers!</h1>
+         <hr>
         <div class ="row">
           <div class ="col-md-6 text-center">
             <h2>Burgers waiting to be ate!</h2>
@@ -14,7 +15,7 @@
   {{#unless devoured}}
   <div class ="container">
     <div class ="row">
-      <div class ="col-md-6 text-center">
+      <div class ="col-md-3 text-center">
       <p> {{this.burger_name}}<span class="label"> Burger</span></p>
       </div>
       <div class ="col-md-6 text-center">
@@ -24,7 +25,7 @@
         <button type="button" class="btn btn-danger" id = "{{this.id}}">Delete</button>
         </div>
          <div class ="col-md-6 text-center holdme">
-        <button type="button" class="btn btn-info" id = "{{this.id}}">Devour Me</button>
+        <button type="button" class="btn btn-info" id = "{{this.id}}"  attr ="true">Devour Me</button>
         </div>
         </div>
         </div>
@@ -44,7 +45,7 @@
   {{#if devoured}}
   <div class ="container">
     <div class ="row">
-      <div class ="col-md-6 text-center">
+      <div class ="col-md-3 text-center">
       <p> {{this.burger_name}}<span class="label"> Burger</span></p>
       </div>
       <div class ="col-md-6 text-center">
@@ -54,7 +55,7 @@
         <button type="button" class="btn btn-danger" id = "{{this.id}}">Delete</button>
         </div>
          <div class ="col-md-6 text-center holdme">
-        <button type="button" class="btn btn-info" id = "{{this.id}}">Add Back!</button>
+        <button type="button" class="btn btn-info addback" id = "{{this.id}}" attr ="true">Add Back!</button>
         </div>
         </div>
         </div>
@@ -66,7 +67,7 @@
 </ul>
 </div>
 
-
+<hr>
 </div>
       </div>
       <div class ="container">
@@ -74,8 +75,6 @@
 <div class ="col-md-12 text-center">
 <h2>Add a burger to eat</h2>
 
-<br>
-<hr>
 <form class="create-form">
 
   <div class="form-group">

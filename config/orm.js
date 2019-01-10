@@ -43,16 +43,6 @@ var orm = {
       cb(result);
     });
   },
-  where: function(tableInput, cb) {
-    var queryString = "SELECT * FROM " + tableInput + "where devoured = 1 ;";
-    connection.query(queryString, function(err, result) {
-      if (err) {
-        throw err;
-      }
-      console.log(result);
-      cb(result);
-    });
-  },
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
@@ -73,16 +63,27 @@ var orm = {
       cb(result);
     });
   },
-  // An example of objColVals would be {name: panther, sleepy: true}
-  update: function(table, objColVals, condition, cb) {
-    var queryString = "UPDATE " + table;
+  //update eaten or not
+  updatefirst: function( table, condition, cb) {
+    console.log(condition);
+    var queryString = "UPDATE "+ table;
+    queryString += " SET devoured = 1 WHERE id ??";
+    
 
-    queryString += " SET ";
-    queryString += objToSql(objColVals);
+    console.log(queryString);
+    connection.query(queryString, condition, function(err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+  },
+  delete: function(table, condition, cb) {
+    var queryString = "DELETE FROM " + table;
     queryString += " WHERE ";
     queryString += condition;
 
-    console.log(queryString);
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;

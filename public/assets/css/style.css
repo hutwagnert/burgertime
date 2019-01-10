@@ -25,6 +25,6 @@ li {
 .holdme {
   padding:0 0 0 0;
 }
-p {
-  float: right;
+.col-md-6{
+  padding: 0 5px 0 0;
 }
