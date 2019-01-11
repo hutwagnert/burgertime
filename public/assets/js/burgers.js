@@ -7,8 +7,6 @@ $(function() {
       burger_name: $("#newburg").val(),
       devoured: $("[name=eaten]:checked").val().trim()
     };
-console.log(newBurger);
-
     $.ajax("/api/burgers/", {
       type: "POST",
       data: newBurger
@@ -36,19 +34,36 @@ console.log(id);
   });
 
   $(".addback").on("click", function(event) {
-    var iduse = $(this).attr("id");
-    var neweaten = {
-      id:iduse
-    };
+    var id = $(this).attr("id");
+    var ajjja="/api/burgers/"+id;
+  
 
+    var newDevoured = {
+      devoured: 0};
     // Send the PUT request.
-    $.ajax("/api/burgers/" + iduse, {
+    $.ajax(ajjja, {
       type: "PUT",
-      data: neweaten
-    })
-    .then(
+      data: newDevoured
+    }).then(
       function() {
-        console.log("changed", neweaten);
+        console.log("changed devoured");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+  $(".eatme").on("click", function(event) {
+    var id = $(this).attr("id");
+    var ajjja="/api/burgers/update/"+id;
+    var newDevoured = {
+      devoured: 1};
+    // Send the PUT request.
+    $.ajax(ajjja, {
+      type: "PUT",
+      data: newDevoured
+    }).then(
+      function() {
+        console.log("changed devoured");
         // Reload the page to get the updated list
         location.reload();
       }

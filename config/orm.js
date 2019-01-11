@@ -41,6 +41,7 @@ var orm = {
         throw err;
       }
       cb(result);
+      
     });
   },
   create: function(table, cols, vals, cb) {
@@ -64,15 +65,37 @@ var orm = {
     });
   },
   //update eaten or not
-  updatefirst: function( table, condition, cb) {
-    console.log(condition);
-    var queryString = "UPDATE "+ table;
-    queryString += " SET devoured = 1 WHERE id ??";
-    
+
+  update: function(table, objColVals, condition, cb) {
+    var queryString = "UPDATE " + table;
+
+    queryString += " SET ";
+    queryString += objToSql(objColVals);
+    queryString += " WHERE id = ";
+    queryString += condition;
 
     console.log(queryString);
-    connection.query(queryString, condition, function(err, result) {
+    connection.query(queryString, function(err, result) {
       if (err) {
+        console.log('here');
+        throw err;
+      }
+
+      cb(result);
+    });
+  },
+  updatefirst: function(table, objColVals, condition, cb) {
+    var queryString = "UPDATE " + table;
+
+    queryString += " SET ";
+    queryString += objToSql(objColVals);
+    queryString += " WHERE id = ";
+    queryString += condition;
+
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        console.log('here');
         throw err;
       }
 
