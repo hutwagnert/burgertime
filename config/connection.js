@@ -2,16 +2,16 @@
 var mysql = require("mysql");
 
 var connection;
-var JAWSDB_URL= "mysql://ben03awrpjvkcd4b:riwejfms6euiels3@tyduzbv3ggpf15sx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xiv5brrf06ircwyw";
-if(JAWSDB_URL){
-  connection = mysql.createConnection(JAWSDB_URL);
+// var JAWSDB_URL= "mysql://ben03awrpjvkcd4b:riwejfms6euiels3@tyduzbv3ggpf15sx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xiv5brrf06ircwyw";
+if(process.env.JAWSDB_URL){
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
 }else{
 connection =  mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: '!#Trytaylor13',
-  database: 'burgers_db'
+  host: process.env.DB_HOST,
+  port: process.env.DB.PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
 });
 };
 
